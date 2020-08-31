@@ -35,6 +35,7 @@
         <th>State</th>
         <th>Total Cases</th>
         <th>New Cases</th>
+        <th>Rate</th>
     </tr>
     <tr th:each="locationStat : ${locationStats}">
         <td th:text="${locationStat.getPosition()}"></td>
@@ -42,6 +43,7 @@
         <td th:text="${locationStat.getState()}"></td>
         <td th:text="${locationStat.getLatestTotalCases()}"></td>
         <td th:text="${locationStat.getDelta()}"></td>
+        <td th:text="${locationStat.getIncShow()}"></td>
     </tr>
 </table>
 </div>

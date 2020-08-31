@@ -44,6 +44,29 @@ public class CoronaVirusDataService {
 //            System.out.println(locationStat.toString());
             int delta = Integer.parseInt(record.get(record.size() - 1)) - Integer.parseInt(record.get(record.size() - 2));
             locationStat.setDelta(delta);
+            double aFrac = Double.parseDouble(record.get(record.size() - 1)) - Double.parseDouble(record.get(record.size() - 2));
+            double bFrac = Double.parseDouble(record.get(record.size() - 2)) - Double.parseDouble(record.get(record.size() - 3));
+//            locationStat.setIncProportion(aFrac / bFrac);
+            double propTotal = 0;
+            if (bFrac != 0) {
+                propTotal = aFrac / bFrac;
+                for (int i = 2; i < 6; i++) {
+                    aFrac = Double.parseDouble(record.get(record.size() - i)) - Double.parseDouble(record.get(record.size() - (i + 1)));
+                    bFrac = Double.parseDouble(record.get(record.size() - (i + 1))) - Double.parseDouble(record.get(record.size() - (i + 2)));
+                    if (bFrac == 0) {
+                        propTotal = 0;
+                        break;
+                    }
+                    propTotal += aFrac / bFrac;
+                }
+                propTotal /= 5;
+            }
+            locationStat.setIncProportion(propTotal);
+            String toShow = String.format("%.2f", propTotal);
+            if(propTotal == 0) {
+                toShow = "N/A";
+            }
+            locationStat.setIncShow(toShow);
             newStats.add(locationStat);
 //            String customerNo = record.get("CustomerNo");
 //            String name = record.get("Name");

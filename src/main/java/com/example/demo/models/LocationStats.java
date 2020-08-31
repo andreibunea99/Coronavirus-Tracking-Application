@@ -7,6 +7,8 @@ public class LocationStats implements Comparable<LocationStats>{
     private int latestTotalCases;
     private int delta;
     private int position;
+    private double incProportion;
+    private String incShow;
 
     @Override
     public String toString() {
@@ -29,6 +31,22 @@ public class LocationStats implements Comparable<LocationStats>{
 
     public int getPosition() {
         return position;
+    }
+
+    public String getIncShow() {
+        return incShow;
+    }
+
+    public void setIncShow(String incShow) {
+        this.incShow = incShow;
+    }
+
+    public double getIncProportion() {
+        return incProportion;
+    }
+
+    public void setIncProportion(double incProportion) {
+        this.incProportion = incProportion;
     }
 
     public void setPosition(int position) {
